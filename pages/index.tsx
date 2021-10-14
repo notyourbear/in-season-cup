@@ -1,24 +1,33 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import getAllData from '../api/getAllData';
-import styles from '../styles/Home.module.css';
 
 type Props = {
-  allRankings: any;
+  longest: any;
   cupholder: any;
 } & NextPage;
 
-const Home = ({ allRankings, cupholder }: Props) => {
-  console.log({ allRankings, cupholder });
+const Home = ({ longest, cupholder }: Props) => {
+  console.log({ longest, cupholder });
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <title>Eighty two wins</title>
         <meta name="description" content="an in-season stanely cup site" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
-        <h1 className={styles.title}>Cupholder: {cupholder.teamName}</h1>
+      <main>
+        <h1>In-season stanley cup</h1>
+        <dl>
+          <dt>Current cupholder</dt>
+          <dd>{cupholder.teamName}</dd>
+          <dt>Longest holder of the cup</dt>
+          <dd>
+            {longest.map((team: any) => (
+              <span key={team.teamName}>{team.teamName}</span>
+            ))}
+          </dd>
+        </dl>
       </main>
     </div>
   );
@@ -27,8 +36,23 @@ const Home = ({ allRankings, cupholder }: Props) => {
 export async function getServerSideProps() {
   const { allRankings, cupholder } = await getAllData();
 
+  const longest = allRankings.reduce((acc: any[], currentTeam: any) => {
+    if (!acc.length) {
+      return [currentTeam];
+    }
+
+    const opt = acc[0];
+    if (opt.gamesHeld < currentTeam.gamesHeld) {
+      return [currentTeam];
+    } else if (opt.gamesHeld > currentTeam.gamesHeld) {
+      return acc;
+    } else {
+      return acc.concat(currentTeam);
+    }
+  }, []);
+
   return {
-    props: { allRankings, cupholder }, // will be passed to the page component as props
+    props: { cupholder, longest },
   };
 }
 
