@@ -1,5 +1,6 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
+import Link from 'next/link'
 import getCurrentHolder from '../api/getCurrentHolder';
 import { HOCKEY_TEAMS } from '../constants/hockeyTeams';
 import { TEAM } from '../types';
@@ -31,6 +32,7 @@ const Home = ({ cupholder }: Props) => {
             <dd>{hockeyteam?.owner}</dd>
           </div>
         </dl>
+        <Link href="/most">next</Link>
       </main>
     </div>
   );

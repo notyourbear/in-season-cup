@@ -1,14 +1,14 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import getAllData from '../../api/getAllData';
+import Link from 'next/link';
+import getAllRankings from '../../api/getAllRankings';
 import { TEAM } from '../../types';
 
 type Props = {
   longest: TEAM[];
-  cupholder: TEAM;
 } & NextPage;
 
-const Home = ({ longest, cupholder }: Props) => {
+const Home = ({ longest }: Props) => {
   return (
     <div>
       <Head>
@@ -18,6 +18,7 @@ const Home = ({ longest, cupholder }: Props) => {
       </Head>
       <main>
         <h1 className="hidden">In-season stanley cup</h1>
+        <Link href="/">prev</Link>
         <dl className="grid grid-cols-1 md:grid-cols-2 gap-4 m-6">
           <div>
             <dt>Longest holder of the cup</dt>
@@ -26,6 +27,8 @@ const Home = ({ longest, cupholder }: Props) => {
                 <span key={team.teamName}>{team.teamName}</span>
               ))}
             </dd>
+            <dt>Games held</dt>
+            <dd>{longest[0].gamesHeld}</dd>
           </div>
         </dl>
       </main>
@@ -34,7 +37,7 @@ const Home = ({ longest, cupholder }: Props) => {
 };
 
 export async function getServerSideProps() {
-  const { allRankings, cupholder } = await getAllData();
+  const allRankings = await getAllRankings();
 
   const longest = allRankings.reduce((acc: TEAM[], currentTeam: TEAM) => {
     if (!acc.length) {
@@ -52,7 +55,7 @@ export async function getServerSideProps() {
   }, []);
 
   return {
-    props: { cupholder, longest },
+    props: { longest },
   };
 }
 
