@@ -1,6 +1,7 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import getCurrentHolder from '../api/getCurrentHolder';
+import { HOCKEY_TEAMS } from '../constants/hockeyTeams';
 import { TEAM } from '../types';
 
 type Props = {
@@ -8,6 +9,11 @@ type Props = {
 } & NextPage;
 
 const Home = ({ cupholder }: Props) => {
+  const hockeyteam =
+    Object.values(HOCKEY_TEAMS).find(
+      ({ teamName }) => teamName === cupholder.teamName
+    );
+
   return (
     <div>
       <Head>
@@ -21,6 +27,8 @@ const Home = ({ cupholder }: Props) => {
           <div>
             <dt>Current cupholder</dt>
             <dd>{cupholder.teamName}</dd>
+            <dt>Owner</dt>
+            <dd>{hockeyteam?.owner}</dd>
           </div>
         </dl>
       </main>
