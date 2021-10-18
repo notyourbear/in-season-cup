@@ -18,20 +18,8 @@ const Home = ({ longest }: Props) => {
       </Head>
       <main>
         <h1 className="hidden">In-season stanley cup</h1>
-        <dl className="grid grid-cols-1 md:grid-cols-2 gap-4 m-6">
-          <div>
-            <dt>Longest holder of the cup</dt>
-            <dd>
-              {longest.map((team) => (
-                <span key={team.teamName}>{team.teamName}</span>
-              ))}
-            </dd>
-            <dt>Games held</dt>
-            <dd>{longest[0].gamesHeld}</dd>
-          </div>
-        </dl>
-        <Link href="/">prev</Link>
-        <Link href="/rankings">next</Link>
+        <div>will hold all of the team rankings</div>
+        <Link href="/most">prev</Link>
       </main>
     </div>
   );
