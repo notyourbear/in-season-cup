@@ -12,7 +12,7 @@ type Props = {
 const Home = ({ cupholder }: Props) => {
   const hockeyteam =
     Object.values(HOCKEY_TEAMS).find(
-      ({ teamName }) => teamName === cupholder.teamName
+      ({ teamName }) => teamName === cupholder?.teamName
     );
 
   return (
@@ -27,7 +27,7 @@ const Home = ({ cupholder }: Props) => {
         <dl className="grid grid-cols-1 md:grid-cols-2 gap-4 m-6">
           <div>
             <dt>Current cupholder</dt>
-            <dd>{cupholder.teamName}</dd>
+            <dd>{cupholder?.teamName}</dd>
             <dt>Owner</dt>
             <dd>{hockeyteam?.owner}</dd>
           </div>
