@@ -1,14 +1,13 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import getAllData from '../api/getAllData';
+import getCurrentHolder from '../api/getCurrentHolder';
 import { TEAM } from '../types';
 
 type Props = {
-  longest: TEAM[];
   cupholder: TEAM;
 } & NextPage;
 
-const Home = ({ longest, cupholder }: Props) => {
+const Home = ({ cupholder }: Props) => {
   return (
     <div>
       <Head>
@@ -23,14 +22,6 @@ const Home = ({ longest, cupholder }: Props) => {
             <dt>Current cupholder</dt>
             <dd>{cupholder.teamName}</dd>
           </div>
-          <div>
-            <dt>Longest holder of the cup</dt>
-            <dd>
-              {longest.map((team) => (
-                <span key={team.teamName}>{team.teamName}</span>
-              ))}
-            </dd>
-          </div>
         </dl>
       </main>
     </div>
@@ -38,25 +29,10 @@ const Home = ({ longest, cupholder }: Props) => {
 };
 
 export async function getServerSideProps() {
-  const { allRankings, cupholder } = await getAllData();
-
-  const longest = allRankings.reduce((acc: TEAM[], currentTeam: TEAM) => {
-    if (!acc.length) {
-      return [currentTeam];
-    }
-
-    const opt = acc[0];
-    if (opt.gamesHeld < currentTeam.gamesHeld) {
-      return [currentTeam];
-    } else if (opt.gamesHeld > currentTeam.gamesHeld) {
-      return acc;
-    } else {
-      return acc.concat(currentTeam);
-    }
-  }, []);
+  const cupholder = await getCurrentHolder();
 
   return {
-    props: { cupholder, longest },
+    props: { cupholder },
   };
 }
 
