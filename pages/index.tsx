@@ -1,6 +1,7 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import getCurrentHolder from '../api/getCurrentHolder';
 import { HOCKEY_TEAMS } from '../constants/hockeyTeams';
 import { TEAM } from '../types';
@@ -8,6 +9,12 @@ import { TEAM } from '../types';
 type Props = {
   cupholder: TEAM;
 } & NextPage;
+
+const variants = {
+  hidden: { opacity: 0, x: -500 },
+  enter: { opacity: 1, x: 0 },
+  exit: { opacity: 0, x: 0 },
+};
 
 const Home = ({ cupholder }: Props) => {
   const hockeyteam = Object.values(HOCKEY_TEAMS).find(
@@ -21,7 +28,14 @@ const Home = ({ cupholder }: Props) => {
         <meta name="description" content="an in-season stanely cup site" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
+      <motion.main
+        className="grid justify-items-center content-center h-screen"
+        variants={variants}
+        initial="hidden"
+        animate="enter"
+        exit="exit"
+        transition={{ type: 'linear' }}
+      >
         <h1 className="hidden">In-season stanley cup</h1>
         <dl className="grid grid-cols-1 m-6">
           <div>
@@ -31,8 +45,10 @@ const Home = ({ cupholder }: Props) => {
             <dd className="text-4xl font-light">{hockeyteam?.owner}</dd>
           </div>
         </dl>
-        <Link href="/most">next</Link>
-      </main>
+        <div className="absolute right-10 inset-y-3/4  sm:inset-y-1/2 text-3xl rounded-3xl bg-black">
+          <Link href="/most">&raquo;</Link>
+        </div>
+      </motion.main>
     </div>
   );
 };

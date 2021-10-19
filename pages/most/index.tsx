@@ -2,11 +2,18 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import Link from 'next/link';
 import getAllRankings from '../../api/getAllRankings';
+import { motion } from 'framer-motion';
 import { TEAM } from '../../types';
 
 type Props = {
   longest: TEAM[];
 } & NextPage;
+
+const variants = {
+  hidden: { opacity: 0, x: 500},
+  enter: { opacity: 1, x: 0 },
+  exit: { opacity: 0, x: 0 },
+};
 
 const Home = ({ longest }: Props) => {
   return (
@@ -16,23 +23,33 @@ const Home = ({ longest }: Props) => {
         <meta name="description" content="an in-season stanely cup site" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>
+      <motion.main
+        className="grid justify-items-center content-center h-screen bg-black text-white"
+        variants={variants}
+        initial="hidden"
+        animate="enter"
+        exit="exit"
+        transition={{ type: 'linear' }}
+      >
         <h1 className="hidden">In-season stanley cup</h1>
-        <dl className="grid grid-cols-1 md:grid-cols-2 gap-4 m-6">
+        <dl className="grid grid-cols-1 m-6">
           <div>
-            <dt>Longest holder of the cup</dt>
-            <dd>
+            <dt className="text-2xl font-thin">Longest holder of the cup</dt>
+            <dd className="text-4xl font-light mb-10">
               {longest.map((team) => (
                 <span key={team.teamName}>{team.teamName}</span>
               ))}
             </dd>
-            <dt>Games held</dt>
-            <dd>{longest[0].gamesHeld}</dd>
+            <dt className="text-2xl font-thin">Games held</dt>
+            <dd className="text-4xl font-light mb-10">
+              {longest[0].gamesHeld}
+            </dd>
           </div>
         </dl>
-        <Link href="/">prev</Link>
-        <Link href="/rankings">next</Link>
-      </main>
+        <div className="absolute left-10 inset-y-3/4 sm:inset-y-1/2 text-3xl rounded-3xl bg-black">
+          <Link href="/">&laquo;</Link>
+        </div>
+      </motion.main>
     </div>
   );
 };
