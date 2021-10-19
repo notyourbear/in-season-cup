@@ -10,9 +10,9 @@ type Props = {
 } & NextPage;
 
 const variants = {
-  hidden: { opacity: 0, x: 500},
-  enter: { opacity: 1, x: 0 },
-  exit: { opacity: 0, x: 0 },
+  hidden: { opacity: 0, x: 500, y: 0 },
+  enter: { opacity: 1, x: 0, y: 0 },
+  exit: { opacity: 0, x: 0, y: 0 },
 };
 
 const Home = ({ longest }: Props) => {
@@ -46,7 +46,7 @@ const Home = ({ longest }: Props) => {
             </dd>
           </div>
         </dl>
-        <div className="absolute left-10 inset-y-3/4 sm:inset-y-1/2 text-3xl rounded-3xl bg-black">
+        <div className="absolute left-10 inset-y-3/4 sm:inset-y-1/2 text-4xl rounded-3xl bg-black hover:text-red-500">
           <Link href="/">&laquo;</Link>
         </div>
       </motion.main>
