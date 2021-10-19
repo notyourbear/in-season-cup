@@ -1,8 +1,9 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import Link from 'next/link';
 import getAllRankings from '../../api/getAllRankings';
 import { motion } from 'framer-motion';
+import Link from '../../components/Link';
+
 import { TEAM } from '../../types';
 
 type Props = {
@@ -32,7 +33,7 @@ const Home = ({ longest }: Props) => {
         transition={{ type: 'linear' }}
       >
         <h1 className="hidden">In-season stanley cup</h1>
-        <dl className="grid grid-cols-1 m-6">
+        <dl className="grid grid-cols-1 m-6 relative">
           <div>
             <dt className="text-2xl font-thin">Longest holder of the cup</dt>
             <dd className="text-4xl font-light mb-10">
@@ -46,9 +47,7 @@ const Home = ({ longest }: Props) => {
             </dd>
           </div>
         </dl>
-        <div className="absolute left-10 inset-y-3/4 sm:inset-y-1/2 text-4xl rounded-3xl bg-black hover:text-red-500">
-          <Link href="/">&laquo;</Link>
-        </div>
+        <Link direction="left" href="/" />
       </motion.main>
     </div>
   );
