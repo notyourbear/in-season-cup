@@ -1,9 +1,9 @@
-import type { NextPage } from 'next';
 import Head from 'next/head';
 import { motion } from 'framer-motion';
+import { LinkButton } from '../../components';
 import getAllRankings from '../../api/getAllRankings';
-import { Link } from '../../components';
 
+import type { NextPage } from 'next';
 import { TEAM } from '../../types';
 
 type Props = {
@@ -47,7 +47,7 @@ const Home = ({ longest }: Props) => {
             </dd>
           </div>
         </dl>
-        <Link direction="left" href="/" />
+        <LinkButton direction="left" href="/" />
       </motion.main>
     </div>
   );

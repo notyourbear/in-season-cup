@@ -1,10 +1,10 @@
-import type { NextPage } from 'next';
 import Head from 'next/head';
 import { motion } from 'framer-motion';
+import { LinkButton } from '../components';
 import getCurrentHolder from '../api/getCurrentHolder';
 import { HOCKEY_TEAMS } from '../constants/hockeyTeams';
-import { Link } from '../components';
 
+import type { NextPage } from 'next';
 import { TEAM } from '../types';
 
 type Props = {
@@ -46,7 +46,7 @@ const Home = ({ cupholder }: Props) => {
             <dd className="text-4xl font-light">{hockeyteam?.owner}</dd>
           </div>
         </dl>
-        <Link direction="right" href="/most" />
+        <LinkButton direction="right" href="/most" />
       </motion.main>
     </div>
   );
