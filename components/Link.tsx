@@ -29,4 +29,4 @@ const Link = ({ direction, href }: Props) => {
   );
 };
 
-export default Link;
+export { Link };

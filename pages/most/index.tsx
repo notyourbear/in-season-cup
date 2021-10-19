@@ -1,8 +1,8 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import getAllRankings from '../../api/getAllRankings';
 import { motion } from 'framer-motion';
-import Link from '../../components/Link';
+import getAllRankings from '../../api/getAllRankings';
+import { Link } from '../../components';
 
 import { TEAM } from '../../types';
 

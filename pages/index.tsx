@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { motion } from 'framer-motion';
 import getCurrentHolder from '../api/getCurrentHolder';
 import { HOCKEY_TEAMS } from '../constants/hockeyTeams';
-import Link from '../components/Link';
+import { Link } from '../components/Link';
 
 import { TEAM } from '../types';
 
