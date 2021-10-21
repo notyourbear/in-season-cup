@@ -1,3 +1,4 @@
+import React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
@@ -5,6 +6,8 @@ import getAllRankings from '../../api/getAllRankings';
 
 import type { NextPage } from 'next';
 import { TEAM } from '../../types';
+import { getTeamOwner } from '../../utils';
+
 
 type Props = {
   longest: TEAM[];
@@ -38,7 +41,12 @@ const Home = ({ longest }: Props) => {
             <dt className="text-2xl font-thin">Longest holder of the cup</dt>
             <dd className="text-4xl font-light mb-10">
               {longest.map((team) => (
-                <span key={team.teamName}>{team.teamName}</span>
+                <React.Fragment key={team.teamName}>
+                  <span key={team.teamName}>{team.teamName}</span>
+                  <span className="text-2xl font-light ml-5">
+                    (owner: {getTeamOwner(team)})
+                  </span>
+                </React.Fragment>
               ))}
             </dd>
             <dt className="text-2xl font-thin">Games held</dt>

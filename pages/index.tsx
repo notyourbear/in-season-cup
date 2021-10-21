@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 
 import getCurrentHolder from '../api/getCurrentHolder';
 import { HOCKEY_TEAMS } from '../constants/hockeyTeams';
+import { getTeamOwner } from '../utils';
 
 import type { NextPage } from 'next';
 import { TEAM } from '../types';
@@ -19,9 +20,7 @@ const variants = {
 };
 
 const Home = ({ cupholder }: Props) => {
-  const hockeyteam = Object.values(HOCKEY_TEAMS).find(
-    ({ teamName }) => teamName === cupholder?.teamName
-  );
+  const owner = getTeamOwner(cupholder);
 
   return (
     <div>
@@ -44,7 +43,7 @@ const Home = ({ cupholder }: Props) => {
             <dt className="text-2xl font-thin">Current cupholder</dt>
             <dd className="text-4xl font-light mb-10">{cupholder?.teamName}</dd>
             <dt className="text-2xl font-thin">Owner</dt>
-            <dd className="text-4xl font-light">{hockeyteam?.owner}</dd>
+            <dd className="text-4xl font-light">{owner}</dd>
           </div>
         </dl>
         <Link href="/most" passHref>
