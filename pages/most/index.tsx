@@ -1,13 +1,11 @@
 import React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
 import getAllRankings from '../../api/getAllRankings';
 
 import type { NextPage } from 'next';
 import { TEAM } from '../../types';
 import { getTeamOwner } from '../../utils';
-
 
 type Props = {
   longest: TEAM[];
@@ -27,14 +25,7 @@ const Home = ({ longest }: Props) => {
         <meta name="description" content="an in-season stanely cup site" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <motion.main
-        className="grid justify-items-center content-center h-full bg-black text-white"
-        variants={variants}
-        initial="hidden"
-        animate="enter"
-        exit="exit"
-        transition={{ type: 'linear' }}
-      >
+      <main className="grid justify-items-center content-center h-full bg-black text-white">
         <h1 className="hidden">In-season stanley cup</h1>
         <dl className="grid grid-cols-1 m-6 relative">
           <div>
@@ -72,7 +63,7 @@ const Home = ({ longest }: Props) => {
             </svg>
           </div>
         </Link>
-      </motion.main>
+      </main>
     </div>
   );
 };

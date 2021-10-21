@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
 
 import getCurrentHolder from '../api/getCurrentHolder';
 import { getTeamOwner } from '../utils';
@@ -12,12 +11,6 @@ type Props = {
   cupholder: TEAM;
 } & NextPage;
 
-const variants = {
-  hidden: { opacity: 0, x: -500, y: 0 },
-  enter: { opacity: 1, x: 0, y: 0 },
-  exit: { opacity: 0, x: 0, y: 0 },
-};
-
 const Home = ({ cupholder }: Props) => {
   const owner = getTeamOwner(cupholder);
 
@@ -28,13 +21,8 @@ const Home = ({ cupholder }: Props) => {
         <meta name="description" content="an in-season stanely cup site" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <motion.main
-        className="grid justify-items-center content-center h-full"
-        variants={variants}
-        initial="hidden"
-        animate="enter"
-        exit="exit"
-        transition={{ type: 'linear' }}
+      <main
+        className="grid justify-items-center content-center h-full bg-white text-black"
       >
         <h1 className="hidden">In-season stanley cup</h1>
         <dl className="grid grid-cols-1 m-6 relative">
@@ -62,7 +50,7 @@ const Home = ({ cupholder }: Props) => {
             </svg>
           </div>
         </Link>
-      </motion.main>
+      </main>
     </div>
   );
 };
