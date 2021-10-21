@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 
 import getCurrentHolder from '../api/getCurrentHolder';
-import { HOCKEY_TEAMS } from '../constants/hockeyTeams';
 import { getTeamOwner } from '../utils';
 
 import type { NextPage } from 'next';
@@ -23,14 +22,14 @@ const Home = ({ cupholder }: Props) => {
   const owner = getTeamOwner(cupholder);
 
   return (
-    <div>
+    <div className="absolute inset-0">
       <Head>
         <title>Eighty two wins</title>
         <meta name="description" content="an in-season stanely cup site" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <motion.main
-        className="grid justify-items-center content-center h-screen"
+        className="grid justify-items-center content-center h-full"
         variants={variants}
         initial="hidden"
         animate="enter"

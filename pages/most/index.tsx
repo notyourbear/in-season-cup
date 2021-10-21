@@ -21,14 +21,14 @@ const variants = {
 
 const Home = ({ longest }: Props) => {
   return (
-    <div>
+    <div className="absolute inset-0">
       <Head>
         <title>Eighty two wins</title>
         <meta name="description" content="an in-season stanely cup site" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <motion.main
-        className="grid justify-items-center content-center h-screen bg-black text-white"
+        className="grid justify-items-center content-center h-full bg-black text-white"
         variants={variants}
         initial="hidden"
         animate="enter"
