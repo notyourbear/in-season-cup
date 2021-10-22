@@ -22,7 +22,7 @@ const Home = ({ cupholder }: Props) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main
-        className="grid justify-items-center content-center h-full bg-white text-black"
+        className="grid justify-items-center content-center h-full bg-sunset-1 text-white"
       >
         <h1 className="hidden">In-season stanley cup</h1>
         <dl className="grid grid-cols-1 m-6 relative">
