@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -26,9 +27,14 @@ const Rankings = ({ rankings }: Props) => {
           <h2 className="text-2xl font-medium m-6">Rankings</h2>
           <ol className="list-decimal">
             {rankings.map((ranking) => (
-              <li className="mb-3 font-medium text-xl" key={ranking[0]}>{ranking[0]}: {ranking[1].teamName} ({ranking[1].gamesHeld} wins)</li>
+              <li className="mb-3 font-medium text-xl" key={ranking[0]}>
+                {ranking[0]}: {ranking[1].teamName} ({ranking[1].gamesHeld}{' '}
+                wins)
+              </li>
             ))}
-            <li className="mb-3 font-medium text-xl">The rest of the scrubs with 0 wins</li>
+            <li className="mb-3 font-medium text-xl">
+              The rest of the scrubs with 0 wins
+            </li>
           </ol>
         </div>
         <Link href="/most" passHref>
